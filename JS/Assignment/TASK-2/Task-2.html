@@ -1,0 +1,275 @@
+
+<script>
+ //1. three different function//   
+function add1(a,b){
+  return a+b
+}
+const result1 = add1(10,20)
+console.log(`The sum of a,b is: ${result1}`)
+
+const add2 = function (c,d){
+   return c+d
+}
+const result2 = add2(14,78)
+console.log(`The sum of c,d is: ${result2}`)
+
+
+const add3 = (e,f) =>{
+    return e+f
+}
+const result3 = add3(23,78)
+console.log(`The sum of e,f is ${result3}`)
+
+//2. Convert this function into an arrow function in three different valid ways (different arrow syntaxes)://
+  
+const greet1 = (name) =>{
+    return "Hello" + name
+}
+console.log(greet1("kasim"))
+
+// Write a function calculateBill that takes two parameters: amount and taxPercentage and returns the final bill amount Then write the same logic using an arrow function.//
+
+function Bill(Amount,taxPercentage){
+   const totaltax = (Amount * taxPercentage) / 100
+   return Amount + totaltax
+}
+const finalBill = Bill(20000,13)
+console.log(`The Final Bill is Rs${finalBill}`)
+
+
+const Billing = (amount,tax) =>{
+   const taxes = (amount * tax) / 100
+   return amount + taxes
+}
+console.log(`The Final Bill is: `,Billing(50000,10))
+
+//4.binding//
+
+const user = {
+    name : "Ajay",
+    sayName: function(){
+        console.log(this.name)
+    },
+    saynameArrow: ()=>{
+        console.log(this.name)
+    }
+}
+    console.log(user.sayName)
+    console.log(user.saynameArrow)
+
+//5.Write an arrow function square that:Takes one parameter n.Returns the square of n.Use implicit return (no return keyword, no { } block).//
+
+const square = (n) => n*n;
+console.log(`The Square of is:`,square(6))
+
+//6. Write a function sumAll that accepts any number of arguments and returns their sum.Then rewrite sumAll as an arrow function using rest parameter.//
+
+function sumall(...num){
+    let sum = 0
+    for(let num1 of num){
+        sum += num1
+    }
+    return sum
+}
+console.log(sumall(1,2,3,4,5))
+
+const SumAll = (...num3) =>{
+let sum1 = 0
+for(let num4 of num3){
+    sum1 += num4
+}
+return sum1
+}
+console.log(SumAll(2,5,7,3,1))
+
+//7.Write a function (you choose the type) getPassedMarks that returns only marks greater than or equal to 50, using filter and an arrow callback.//
+
+const marks = [98,45,67,30,88,76]
+
+const getPassedMarks = marks.filter((mark)=> mark >= 50)
+console.log(getPassedMarks)
+
+//8.Rewrite this arrow function as a normal function declaration and as a function expression://
+
+function formatname(firstname,lastname){
+    return firstname.toUpperCase() + lastname.toUpperCase()
+}
+console.log(formatname("mukesh","kumar"))
+
+const formatname1 = function(firstName,lastName){
+    return firstName.toUpperCase() + lastName.toUpperCase()
+}
+console.log(formatname1("john","Abraham"))
+
+//9.Observe the code and write: What will be logged for each console.log?Why is there any error (if you think so)?//
+console.log(add(5,3))
+
+function add(m,n){
+    return m+n
+}
+//the normal function hoisted because when we call normal funtion in top of the scope it will the enire code in top of the scope and will give the result in normal function//
+
+const sub = (k,i) =>{
+    return k - i
+}
+console.log(sub(5,2))
+
+// in arrow function we stored in as a expression in on variable so const is hoisted not initialized so we cant access the function before initialization due to temporal dead zone.//
+ 
+//10. //
+
+const greet = (greeting) => (name) => `${greeting},${name}!`
+
+const sayhello = greet("Hello")
+console.log(sayhello("Haleel"))
+
+const sayhi = greet("Hi")
+console.log(sayhi("Tawfiq"))
+
+const sayvanakam = greet("Vanakam")
+console.log(sayvanakam("Hasith"))
+
+
+//11. Write a function getCharFrequency(str) that takes a string and returns an object where://
+
+function getcharcount(str){
+    let count = {}
+    for(let i = 0 ; i < str.length ; i++){
+        let char = str[i]
+        if(count[char]){
+            count[char]++
+        }
+        else{
+            count[char] = 1
+        }
+    }
+    return count
+}
+
+console.log(getcharcount("apple"))
+
+
+// second largest number in an array//
+
+function secondlargestNumber(arr) {
+  let max = arr[0];
+  let second = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      second = max;
+      max = arr[i];
+    } 
+    else if (arr[i] < max && arr[i] > second) {
+      second = arr[i];
+    }
+  }
+
+  return second === max ? null : second;
+}
+
+console.log(secondlargestNumber([5, 2, 3, 1]))
+
+//anagram checking//
+
+function isAnagram(str1, str2) {
+  let s1 = str1.replace(/\s/g, "").toLowerCase();
+  let s2 = str2.replace(/\s/g, "").toLowerCase();
+
+  return s1.split("").sort().join("") === s2.split("").sort().join("");
+}
+console.log(isAnagram("madam","madam"))
+
+//Duplicate array//
+
+function uniquevalue(arr){
+    let result = []
+
+    for(let i=0 ; i< arr.length ; i++){
+        let isDuplicate = false
+
+        for(let j=0 ; j< arr.length ; j++){
+            if(arr[i] === result[j]){
+                isDuplicate = true
+                break
+            }
+        }
+        if(!isDuplicate){
+            result.push(arr[i])
+        }
+    }
+    return result
+}
+
+console.log(uniquevalue([1,1,2,2,3,3,5,7]));
+
+// Group people by age You get an array of objects://
+
+function groupByAge(people) {
+  let result = {};
+
+  for (let i = 0; i < people.length; i++) {
+    let age = people[i].age;
+    let name = people[i].name;
+
+    if (result[age]) {
+      result[age].push(name);
+    } else {
+      result[age] = [name];
+    }
+  }
+
+  return result;
+}
+const people = [
+  { name: "Ajay", age: 20 },
+  { name: "Ravi", age: 21 },
+  { name: "Kumar", age: 20 },
+  { name: "Sara", age: 22 },
+];
+
+console.log(groupByAge(people));
+
+// Factorial number//
+
+function factorial(num8){
+    let fact = 1
+    for(let i = 1 ; i <= num8 ; i++){
+        fact = fact * i
+    }
+    return fact
+}
+console.log(factorial(5))
+
+
+//Reverse String //
+function reverseStr(str3){
+  let reversed = ""
+  for(let i = str3.length - 1 ; i >=0;i--){
+    reversed += str3[i]
+  }
+  return reversed
+}
+console.log(reverseStr("kasim"))
+
+//prime number or not//
+
+function isPrime(num) {
+  if (num <= 1) {
+    return false;
+  }
+
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+console.log(isPrime(9))
+</script>
+
+
+
+
