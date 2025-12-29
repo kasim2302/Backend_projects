@@ -1,0 +1,224 @@
+<script>
+
+ //Even numbers using array using for loop//   
+function isEven(arr1){   
+let even = []
+    for(let i=1 ; i <= arr1.length ; i++){
+        if(i % 2 === 0){
+           even.push(i)
+        }
+    }
+    return even
+}
+console.log(isEven([1,2,3,4,5,6,7,8,9,10]))
+
+
+//Task 1.2: Create a function that accepts a number (1-7) and returns the day of the week using a switch statement. Handle invalid inputs.//
+
+function days(day){
+
+    switch(day){
+        case 1:
+            return "Monday"
+            break
+        case 2:
+            return "Tuesday"
+            break  
+        case 3:
+            return "Wednesday"
+            break    
+        case 4:
+            return "Thursday"
+            break   
+        case 5:
+            return "Friday"
+            break  
+        case 6:
+            return "Saturday"
+            break 
+        case 7:
+            return "Sunday"
+            break    
+        default:
+            return "Invalid days!"               
+    }
+}
+console.log(days(8))
+
+//Write a function that takes an array of objects (students with marks) and returns the count of students in each grade category (A: 90+, B: 75-89, C: below 75). Use appropriate loops and conditionals.//
+
+
+function getPassMarks(student){
+   let A_grade = 0
+   let B_grade = 0
+   let C_grade = 0
+
+   for(let students of student){
+    if(students.mark >= 90){
+        A_grade += 1
+       
+    }
+    else if(students.mark >= 75  || student.mark <= 89 ){
+        B_grade += 1
+     
+   }
+   else if(students.mark < 75){
+       C_grade += 1
+       
+   }
+  
+}
+return {A:A_grade,B:B_grade,C:C_grade}
+}
+console.log(getPassMarks([
+        {name:"tawfiq",mark:87},
+        {name:"Aadhil",mark:74},
+        {name:"Hasith",mark:65},
+        {name:"Halil",mark:92}]))
+
+//Task 2.1: Write a function that accepts any value and returns "truthy" or "falsy" as a string. Test it with: 0, "", null, undefined, [], {}, false, "hello".//
+
+function check_Truthy_Falsy(value){
+  if(value){
+    return "Truthy"
+  }
+  else{
+    return "Falsy"
+  }
+}
+console.log(check_Truthy_Falsy(0))
+console.log(check_Truthy_Falsy(1))
+console.log(check_Truthy_Falsy(""))
+console.log(check_Truthy_Falsy(" "))
+console.log(check_Truthy_Falsy([]))
+console.log(check_Truthy_Falsy({}))
+console.log(check_Truthy_Falsy(true))
+console.log(check_Truthy_Falsy(false))
+console.log(check_Truthy_Falsy(null))
+console.log(check_Truthy_Falsy(undefined))
+console.log(check_Truthy_Falsy("hello"))
+
+//Task 2.2: Create a function that takes an array of mixed values and returns a new array containing only the truthy values.//
+
+function gettruthyvalues(arr2){
+    let result = []
+    for(let value of arr2){
+        if(value){
+            result.push(value)
+        }
+    }
+    return result
+}
+console.log(gettruthyvalues([0, "", null, undefined, [], {}, false, "hello", 42]))
+
+//Task 2.3: Write a function that accepts three parameters (firstName, lastName, nickname). Return the full name as "firstName lastName", but if lastName is falsy, return just firstName. If both are falsy but nickname exists, return nickname. If all are falsy, return "Anonymous".//
+
+function getname(firstname,lastname,nickname){
+    
+    if(firstname && lastname){
+        return firstname + " " + lastname
+    }
+    else if(firstname){
+        return firstname
+    }
+    else if(nickname){
+        return nickname
+    }
+    else{
+        return "Anonymous"
+    }
+}
+
+console.log(getname("","","murugan"))
+console.log(getname("","",""))
+console.log(getname("rajan","kumar",""))
+console.log(getname("praveen","",""))
+
+// Task 3.2: Write a function that demonstrates the var loop problem with setTimeout. Then fix it using two different methods: one with let and one using closures.//
+
+function fixedClosure() {
+    for (var i = 1; i <= 3; i++) {
+        (function (j) {
+            setTimeout( () => {
+                console.log(j)
+            }, 1000)
+        })(i)
+    }
+}
+
+fixedClosure()
+
+//Task 3.3: Create a function that attempts to reassign values to variables declared with var, let, and const. Also attempt to modify properties of a const object. Explain what works and what throws errors.//
+function reassignmentTest() {
+
+    var x = 10
+    x = 20
+    console.log("var x:", x)
+
+   
+    let y = 30
+    y = 40   
+    console.log("let y:", y)
+
+    
+    const z = 50
+
+    console.log("const z:", z)
+
+    const person = {
+        name: "mukesh",
+        age: 20
+    }
+
+    person.age = 23 
+    person.city = "Chennai"
+
+    console.log("const object:", person)
+}
+
+reassignmentTest()
+
+// Task 4.1: Create a function called createMultiplier that takes a number as an argument and returns a function. The returned function should take another number and return the product of both numbers. Test with different multipliers.//
+
+function createMultiplier(multiplier) {
+    return function (num) {
+        return multiplier * num
+    }
+}
+const double_value = createMultiplier(5);
+console.log(double_value(5));   
+console.log(double_value(10)); 
+
+const triple_value = createMultiplier(8);
+console.log(triple_value(4)); 
+
+
+// Task 4.2: Write a function called secretPassword that returns an object with two methods: setPassword(newPass) and checkPassword(guess). The actual password should be private (not accessible from outside) and only modifiable through setPassword. checkPassword should return true or false.//
+
+function secretPassword() {
+    let password = ""
+
+    return {
+        setPassword(newPass) {
+            password = newPass
+        },
+        checkPassword(guess) {
+            return guess === password
+        }
+    }
+}
+
+const pwd_container = secretPassword();
+
+pwd_container.setPassword("3765");
+
+console.log(pwd_container.checkPassword("3765")); 
+console.log(pwd_container.checkPassword("8907"));
+
+
+
+
+
+
+
+</script>
