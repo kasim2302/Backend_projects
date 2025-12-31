@@ -1,0 +1,78 @@
+<script>
+
+ function runTask(callback) {
+    callback(() => {
+        console.log("Task Completed")
+    });
+}
+
+function asyncTask(done) {
+    setTimeout(() => {
+        console.log("Async Task Done")
+        done()
+    }, 1000)
+}
+
+runTask(asyncTask);
+
+
+const isvalid = (age) => {
+   if (age >= 18){
+      console.log("Eligible to vote")
+   }
+   else{
+    console.log("Not eligible for vote")
+   }
+}
+isvalid(21)
+
+function fakeApiCall(successCallback) {
+  setTimeout(() => {
+    const data = { id: 101, name: "Kasim" };
+    successCallback(data);
+  }, 1500);
+}
+
+function finalMessage(response) {
+  console.log("Data received:", response);
+}
+
+fakeApiCall(finalMessage);
+
+
+const arr = [1,2,3,4,4,5,8]
+arr.push(7,8,0)
+console.log(arr)
+
+arr.shift(0)
+console.log(arr)
+
+
+
+arr1 = [1,2,3,4,5,6,7,8,9,10]
+
+const iseven = arr1.filter(num => num % 2 === 0)
+console.log(iseven);
+
+
+const salary = [20000,15000,45000,34000,15000,25000]
+const total_salary = salary.reduce((total,current)=>{
+  return total + current 
+},0)
+console.log(total_salary)
+
+const arr2 = [1,2,3,4,4,5,8]
+arr2.push(12)
+console.log(arr2)
+
+arr2.splice(1,3)
+console.log(arr2)
+
+const prices = [230,564,342,200,1023]
+const gst = 0.30
+
+const addgst = prices.map((price) => {
+    return price + (price * gst)
+})
+console.log(addgst)
+</script>

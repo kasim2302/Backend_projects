@@ -1,0 +1,82 @@
+
+Shallow Copy Methods (JS):
+
+Copies only the first level
+Nested objects/arrays still share the same reference
+
+1️⃣ Spread Operator (...)
+const copy = { ...original };
+const arrCopy = [...arr];
+
+2️⃣ Object.assign()
+const copy = Object.assign({}, original);
+
+3️⃣ Array.prototype.slice()
+const copy = arr.slice();
+
+4️⃣ Array.from()
+const copy = Array.from(arr);
+
+5️⃣ concat()
+const copy = [].concat(arr);
+
+6️⃣ Manual Loop (for / map)
+const copy = arr.map(item => item);
+
+
+const obj1 = { a: 1, b: { c: 2 } };
+const obj2 = { ...obj1 };
+
+obj2.b.c = 10;
+console.log(obj1.b.c); 
+
+Deep Copy Methods (JS)
+
+Creates a fully independent copy
+Nested objects are copied completely
+
+1️⃣ structuredClone() ✅ (Best & Modern)
+const copy = structuredClone(original);
+
+
+✔ Handles nested objects
+✔ Handles arrays, maps, sets
+❌ Not supported in very old browsers
+
+2️⃣ JSON.parse(JSON.stringify())
+const copy = JSON.parse(JSON.stringify(original));
+
+
+❌ Limitations:
+
+Loses undefined
+
+Loses functions
+
+Loses Date, Map, Set
+
+Breaks circular references
+
+3️⃣ Recursive Function (Custom Deep Copy)
+function deepCopy(obj) {
+  if (obj === null || typeof obj !== "object") return obj;
+
+  const copy = Array.isArray(obj) ? [] : {};
+
+  for (let key in obj) {
+    copy[key] = deepCopy(obj[key]);
+  }
+  return copy;
+}
+
+
+✔ Works everywhere
+✔ Interview-favorite
+
+4️⃣ Libraries (Industry Standard)
+Lodash
+_.cloneDeep(original);
+
+
+✔ Handles all edge cases
+❌ Requires dependency

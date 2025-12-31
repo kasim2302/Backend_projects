@@ -1,0 +1,150 @@
+1️⃣ push()
+
+Definition: Adds element(s) to the end
+Type: Expression
+Returns: New length
+
+arr.push(10);
+
+2️⃣ pop()
+
+Definition: Removes last element
+Returns: Removed element
+
+arr.pop();
+
+3️⃣ shift()
+
+Definition: Removes first element
+Returns: Removed element
+
+arr.shift();
+
+4️⃣ unshift()
+
+Definition: Adds element(s) at beginning
+Returns: New length
+
+arr.unshift(5);
+
+5️⃣ slice()
+
+Definition: Extracts part of array (no mutation)
+Returns: New array
+
+arr.slice(1, 3);
+
+6️⃣ splice()
+
+Definition: Add/remove elements (mutates original)
+Returns: Removed elements (array)
+
+arr.splice(1, 2);
+
+7️⃣ concat()
+
+Definition: Merges arrays
+Returns: New array
+
+arr1.concat(arr2);
+
+8️⃣ join()
+
+Definition: Converts array to string
+Returns: String
+
+arr.join(",");
+
+9️⃣ indexOf()
+
+Definition: Finds index of element
+Returns: Number
+
+arr.indexOf(5);
+
+🔟 includes()
+
+Definition: Checks if value exists
+Returns: Boolean
+
+arr.includes(10);
+
+🧠 3️⃣ Higher Order Methods (HOFs)
+
+✅ Take function as argument
+
+🔹 B. Iteration HOFs (NO useful return)
+1️⃣ forEach()
+
+Definition: Executes function for each element
+Returns: undefined ❌
+Use: Side effects (log, update UI)
+
+arr.forEach(x => console.log(x));
+
+
+📌 Expression but returns undefined
+
+🔹 C. Transformation HOFs (Return NEW array)
+2️⃣ map()
+
+Definition: Transforms each element
+Returns: New array
+
+const doubled = arr.map(x => x * 2);
+
+3️⃣ filter()
+
+Definition: Filters based on condition
+Returns: New array
+
+const even = arr.filter(x => x % 2 === 0);
+
+4️⃣ flatMap()
+
+Definition: Map + flatten (1 level)
+Returns: New array
+
+arr.flatMap(x => [x, x * 2]);
+
+🔹 D. Reduction HOFs (Return single value)
+5️⃣ reduce()
+
+Definition: Reduces array to single value
+Returns: Any (number, object, array)
+
+const sum = arr.reduce((a, b) => a + b, 0);
+
+🔹 E. Searching HOFs
+6️⃣ find()
+
+Returns: First matching element OR undefined
+
+arr.find(x => x > 10);
+
+7️⃣ findIndex()
+
+Returns: Index OR -1
+
+arr.findIndex(x => x > 10);
+
+🔹 F. Validation HOFs (Boolean return)
+8️⃣ some()
+
+Returns: Boolean (any match)
+
+arr.some(x => x > 5);
+
+9️⃣ every()
+
+Returns: Boolean (all match)
+
+arr.every(x => x > 0);
+
+🔹 G. Sorting HOF
+🔟 sort()
+
+Definition: Sorts array
+Returns: Sorted array (mutates original)
+
+arr.sort((a, b) => a - b);
