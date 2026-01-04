@@ -1,0 +1,457 @@
+<script>
+
+
+
+
+    //TASK-1//
+    //Rewrite an ES5 program using let and const.//
+        const name = "Kasim"
+        let age = 22      
+
+        function greet() {
+            const message = `Hello ${name}`
+            console.log(message)
+        }
+
+        greet();
+    // Show block scope using let inside if.//
+        if (true) {
+                let x = 10
+                console.log(x)
+            }
+
+            console.log(x)
+    //Try to reassign a const and observe the error.//
+
+    const country = "India"
+    country = "France"
+
+    console.log(country)
+
+    //Identify where var causes a bug and fix it with let.//
+
+    for (var i = 1; i <= 3; i++) {
+        setTimeout(function () {
+            console.log(i)
+        }, 1000)
+    }
+
+    for (let i = 1; i <= 3; i++) {
+            setTimeout(function () {
+                console.log(i)
+            }, 1000)
+        }
+
+    //Task-2//
+    const add = (a, b) => {
+            return a + b
+        }
+
+    const square = x => x * x
+        console.log(square(5))
+
+    const createUser = (name, age) => ({
+            name: name,
+            age: age
+    });
+
+    console.log(createUser("Ajay",24))
+
+    const numbers = [1, 2, 3, 4]
+    const doubled = numbers.map(num => num * 2)
+    console.log(doubled)
+
+    //TASK-3//
+
+    const name1 = "Yahiya"
+    const age1 = 21
+    const role = "Full Stack Developer"
+
+    console.log(`Name: ${name1}, Age: ${age1}, Role: ${role}`)
+
+    const product = "Laptop"
+    const price = 55000
+
+    console.log(`Product: ${product}, Price: ₹${price}`)
+
+    const message = `
+    Hello
+    Welcome to
+    JavaScript
+    `
+    console.log(message)
+
+
+    const marks = 85
+    console.log(`Result: ${marks >= 50 ? "Pass" : "Fail"}`)
+
+
+    // Class Tasks//
+
+    class Student {
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+            }
+
+            display() {
+                console.log(`Name: ${this.name}, Age: ${this.age}`)
+            }
+        }
+
+        const student1 = new Student("Kumar", 23)
+        student1.display()
+
+            const s1 = new Student("Ajay", 21);
+            const s2 = new Student("Ravi", 22);
+            const s3 = new Student("Sara", 23);
+
+            s1.display();
+            s2.display();
+            s3.display();
+
+        class BankAccount {
+                constructor(accountHolder, balance = 0) {
+                    this.accountHolder = accountHolder;
+                    this.balance = balance;
+                }
+
+                deposit(amount) {
+                    this.balance += amount;
+                    console.log(`Deposited ₹${amount}. Balance: ₹${this.balance}`);
+                }
+
+                withdraw(amount) {
+                    if (amount > this.balance) {
+                        console.log("Insufficient balance");
+                    } else {
+                        this.balance -= amount;
+                        console.log(`Withdrawn ₹${amount}. Balance: ₹${this.balance}`);
+                    }
+                }
+            }
+
+            const account = new BankAccount("Kasim", 1000);
+            account.deposit(500);
+            account.withdraw(300);
+
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        introduce() {
+            console.log(`Hi, I am ${this.name}`);
+        }
+    }
+
+    const p1 = new Person("Kasim", 22);
+    p1.introduce();
+
+
+    // De Structuring //
+
+    const numbers1 = [10, 20, 30]
+
+        const [a, b, c] = numbers1
+
+        console.log(a)
+        console.log(b)
+        console.log(c)
+
+    const user = {
+        name2: "Bailey",
+        age2: 22,
+        role1: "Developer"
+    };
+
+    const { name2, age2, role1 } = user;
+
+    console.log(name)
+    console.log(age2)
+
+    const person = {
+        firstName: "Kalishwaran",
+        city: "Chennai"
+    };
+
+    const { firstName: userName, city: location } = person;
+
+    console.log(userName);  
+    console.log(location);  
+
+    function printUser({ name3, age3 }) {
+        console.log(`Name: ${name3}, Age: ${age3}`);
+    }
+
+    printUser({ name: "Naseer", age: 23 });
+
+    //Spread Operator//
+
+    const arr1 = [1, 2, 3]
+    const arr2 = [...arr1]
+
+        arr2.push(4)
+        console.log(arr1)
+        console.log(arr2)
+
+
+    const frontend = ["HTML", "CSS", "JS"]
+    const backend = ["Python", "Django"]
+
+    const fullStack = [...frontend, ...backend]
+
+    console.log(fullStack)
+
+    const user1 = {
+        name: "Yahiya",
+        age: 21,
+        city: "Chennai"
+    };
+
+    const updatedUser = {
+        ...user1,
+        age: 23
+    };
+
+    console.log(updatedUser);
+
+    function sum(a, b, c) {
+            return a + b + c;
+        }
+    const nums = [10, 20, 30];
+
+    console.log(sum(...nums));
+
+    //Rest Operator//
+
+    function sum(...numbers) {
+            let total = 0;
+            for (let num of numbers) {
+                total += num;
+            }
+            return total;
+        }
+
+        console.log(sum(1, 2, 3, 4))
+
+        const totalSum = (...nums) => {
+                return nums.reduce((acc, curr) => acc + curr, 0);
+            };
+
+            console.log(totalSum(10, 20, 30));
+
+        
+            const scores = [90, 85, 88, 92];
+            const [first, second, ...others] = scores;
+
+            console.log(first);   
+            console.log(second);  
+            console.log(others); 
+
+        
+    function show(...values) {
+        console.log(values);
+    }
+
+    show(1, 2, 3);
+
+    const nums1 = [1, 2, 3];
+
+    console.log(...nums1);
+
+    //Ternary Operator//
+
+    const num = 7;
+
+        const result = num % 2 === 0 ? "Even" : "Odd";
+
+        console.log(result);
+
+        const marks1 = 45;
+
+            const status = marks1 >= 50 ? "Pass" : "Fail";
+
+            console.log(status);
+
+    const age3 = 20;
+
+    const message1 = age3 >= 18 ? "Eligible to vote" : "Not eligible";
+
+    console.log(message1);
+
+    const score = 82;
+
+    const grade =
+        score >= 90 ? "A" :
+            score >= 75 ? "B" :
+                score >= 60 ? "C" :
+                    "Fail";
+
+    console.log(grade); 
+
+
+    //Optional chaining//
+
+    const user3 = {
+            profile: {
+                name: "Kasim"
+            }
+        };
+    console.log(user.profile?.address?.city); 
+  
+    const city = user.profile?.city;
+    console.log(city); 
+
+    const users = [
+            { name: "ragav" },
+            { name: "Ajay" }
+        ];
+
+        console.log(users[0]?.name); 
+        console.log(users[5]?.name); 
+
+    const apiResponse = {
+        status: 200,
+        data: {
+            user: {
+                id: 101,
+                profile: {
+                    name: "Rajesh",
+                    skills: ["JS", "React", "Python"]
+                }
+            }
+        }
+    }
+    const userName1 = apiResponse.data?.user?.profile?.name;
+        const firstSkill = apiResponse.data?.user?.profile?.skills?.[0];
+
+        console.log(userName1);   
+        console.log(firstSkill);
+
+
+    //Nullish coalescing//
+    
+    const count = 0;
+        const result1 = count ?? 10;
+
+        console.log(result1); 
+
+    const username = "";
+        const name4 = username ?? "Guest";
+
+        console.log(name4); 
+
+    const apiLimit = undefined;
+        const limit = apiLimit ?? 20;
+
+        console.log(limit);     
+    
+        const response = {
+                data: {
+                    user: {
+                        name: "Mohamed Kasim"
+                    }
+                }
+            };
+
+    const userName2 = response.data?.user?.name ?? "Anonymous";
+
+    console.log(userName2); // Mohamed Kasim
+
+
+
+    //Coding Practice//
+    //Non repeating characters//
+ function firstNonRepeatingChar(str) {
+        const freq = {};
+
+        
+        for (let char of str) {
+            freq[char] = (freq[char] || 0) + 1;
+        }
+
+      
+        for (let char of str) {
+            if (freq[char] === 1) {
+                return char;
+            }
+        }
+
+        return null; 
+    }
+
+  
+    
+    console.log(firstNonRepeatingChar("aabbcdde")); 
+  
+    function moveZerosToEnd(arr) {
+            let result = [];
+            let zeroCount = 0;
+
+            for (let num of arr) {
+                if (num === 0) {
+                    zeroCount++;
+                } else {
+                    result.push(num);
+                }
+            }
+
+           
+            while (zeroCount > 0) {
+                result.push(0);
+                zeroCount--;
+            }
+
+            return result;
+        }
+
+        console.log(moveZerosToEnd([1, 0, 3, 0, 5, 0, 2]));
+
+       //check string rotation//
+
+       function isRotation(str1, str2) {
+           
+            if (str1.length !== str2.length) {
+                return false;
+            }
+
+            
+            return (str1 + str1).includes(str2);
+        }
+
+       
+        console.log(isRotation("abcd", "cdab")); 
+
+    function isBalanced(str) {
+        const stack = [];
+        const pairs = {
+            ')': '(',
+            '}': '{',
+            ']': '['
+        };
+
+        for (let char of str) {
+            // If opening bracket, push to stack
+            if (char === '(' || char === '{' || char === '[') {
+                stack.push(char);
+            }
+            // If closing bracket
+            else if (char === ')' || char === '}' || char === ']') {
+                if (stack.pop() !== pairs[char]) {
+                    return false;
+                }
+            }
+        }
+
+        // Stack should be empty at the end
+        return stack.length === 0;
+    }
+
+    // Examples
+    console.log(isBalanced("{[()]}")); // true
+    console.log(isBalanced("{[(])}")); // false
+
+</script>
+

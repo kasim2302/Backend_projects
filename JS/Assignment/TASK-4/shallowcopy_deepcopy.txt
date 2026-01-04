@@ -4,23 +4,23 @@ Shallow Copy Methods (JS):
 Copies only the first level
 Nested objects/arrays still share the same reference
 
-1️⃣ Spread Operator (...)
+1️.Spread Operator (...)
 const copy = { ...original };
 const arrCopy = [...arr];
 
-2️⃣ Object.assign()
+2️.Object.assign()
 const copy = Object.assign({}, original);
 
-3️⃣ Array.prototype.slice()
+3️.Array.prototype.slice()
 const copy = arr.slice();
 
-4️⃣ Array.from()
+4️.Array.from()
 const copy = Array.from(arr);
 
-5️⃣ concat()
+5️.concat()
 const copy = [].concat(arr);
 
-6️⃣ Manual Loop (for / map)
+6️.Manual Loop (for / map)
 const copy = arr.map(item => item);
 
 
