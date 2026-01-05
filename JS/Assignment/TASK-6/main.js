@@ -9,3 +9,4 @@ console.log(greet("suresh"))
 
 const student = new Student("Ram",26)
 student.display()
+

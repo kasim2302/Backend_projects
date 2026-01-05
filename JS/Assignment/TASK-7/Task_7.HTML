@@ -1,0 +1,263 @@
+<script>
+    //CALLBACK – 5 Programs//
+    const printcallback = () => {
+        setTimeout(()=>{
+            console.log("The datas are sented successfully!")
+        },2000)
+    }
+    printcallback()
+
+
+
+   function add(a,b){
+    return a + b
+   }
+
+   function sub(a,b){
+    return a - b
+   }
+
+   function mul(a,b){
+    return a * b
+   }
+
+   function div(a,b){
+    if(b === 0){
+        return "cannot divided by zero"
+    }
+    return a / b
+   }
+
+   function calculator(a,b,operation){
+    return operation(a,b)
+   }
+
+   console.log(calculator(10,5,add))
+   console.log(calculator(10,5,sub))
+   console.log(calculator(10,5,mul))
+   console.log(calculator(10,5,div))
+
+function login(user, callback) {
+  setTimeout(() => {
+    console.log("User logged in:", user);
+    callback();
+  }, 1000);
+}
+
+function fetchProfile(callback) {
+  setTimeout(() => {
+    console.log("Profile fetched");
+    callback();
+  }, 1000);
+}
+
+function showDashboard(callback) {
+  setTimeout(() => {
+    console.log("Dashboard displayed");
+    callback();
+  }, 1000);
+}
+
+login("Kasim", () => {
+  fetchProfile(() => {
+    showDashboard(() => {
+      console.log("User ready");
+    });
+  });
+});
+
+
+function divide(a, b, callback) {
+  if (b === 0) {
+    callback("Cannot divide by zero", null);
+  } else {
+    callback(null, a / b);
+  }
+}
+ 
+divide(10,0, (error,result)=>{
+    if(error){
+        console.log("Error:",error)
+    }
+    else{
+        console.log("Result",result)
+    }
+})
+
+function fetchUserFromAPI(userId, callback) {
+  console.log("Fetching user from API...");
+
+  setTimeout(() => {
+    if (!userId) {
+      callback("User ID is missing", null); 
+    } else {
+      const user = {
+        id: userId,
+        name: "John",
+        age: 29
+      };
+      callback(null, user);
+    }
+  }, 2000); 
+}
+fetchUserFromAPI(1,(error,data)=>{
+   if(error){
+    console.log("API Error",error)
+   }
+   else{
+    console.log("API Success",data)
+   }
+})
+
+//PROMISE – 5 Programs//
+
+
+function resolveAfterDelay(ms){
+   return new Promise((resolve)=>{
+    setTimeout(()=>{
+       resolve("promise resolved after delay")
+    },ms)
+      
+   })
+}
+resolveAfterDelay(4000).then((msg)=>{
+    console.log(msg)
+})
+
+
+function checkAge(age){
+    return new Promise((resolve,reject)=>{
+      if(age >= 18){
+        resolve("Access Granted")
+      }
+      else{
+        reject("Access denied: Age must be 18+")
+      }
+    })
+}
+checkAge(19).then((msg)=>{
+        console.log(msg)
+    }).catch((err)=>{
+        console.log(err);
+        
+    })
+
+    function add(a) {
+            return Promise.resolve(a + 10);
+        }
+
+        function multiply(a) {
+            return Promise.resolve(a * 2);
+        }
+
+        function subtract(a) {
+            return Promise.resolve(a - 5);
+        }
+
+        add(5)
+            .then(result => multiply(result))  
+            .then(result => subtract(result))  
+            .then(result => console.log(result))
+            .catch(error => console.log(error));
+
+    const p1 = Promise.resolve(10);
+    const p2 = Promise.resolve(20);
+    const p3 = Promise.resolve(30);
+
+    Promise.all([p1, p2, p3])
+            .then((results) => {
+                console.log(results); 
+            })
+            .catch(console.error);
+
+            function fetchUserPromise(id) {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            if (!id) {
+                                reject("User ID missing");
+                            } else {
+                                resolve({ id: id, name: "Aadhil" });
+                            }
+                        }, 1000);
+                    });
+                }
+                fetchUserPromise(1)
+                        .then(user => {
+                            console.log("User:", user);
+                        })
+                        .catch(error => {
+                            console.log("Error:", error);
+                        });
+
+
+        async function example() {
+                const value = await getNumber();
+                console.log(value); // 10
+            }
+
+        example();
+
+        async function fetchData() {
+                return new Promise((_, reject) => {
+                    setTimeout(() => reject("API failed"), 1000);
+                });
+            }
+
+            try {
+                const data = await fetchData();
+                console.log(data);
+            } catch (error) {
+                console.log("Caught:", error);
+            }
+
+            function delay(ms, value) {
+                    return new Promise(resolve => {
+                        setTimeout(() => resolve(value), ms);
+                    });
+                }
+
+                async function runSequential() {
+                    const a = await delay(1000, "A");
+                    console.log(a);
+
+                    const b = await delay(1000, "B");
+                    console.log(b);
+
+                    const c = await delay(1000, "C");
+                    console.log(c);
+                }
+
+                runSequential();
+
+    function delay(ms, value) {
+        return new Promise(resolve => {
+            setTimeout(() => resolve(value), ms);
+        });
+    }
+
+    async function runParallel() {
+        const results = await Promise.all([
+            delay(1000, "A"),
+            delay(2000, "B"),
+            delay(1500, "C"),
+        ]);
+
+        console.log(results); 
+    }
+
+    runParallel();
+
+    async function run() {
+            try {
+                const result = await getNumber();
+                console.log(result);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        run();
+
+
+
+</script>
