@@ -1,0 +1,258 @@
+1.
+useState is a React Hook used to create and manage state in functional components.
+
+Why used in forms:
+
+To store input values (name, email, password, etc.)
+
+To update values when the user types
+
+To control form behavior (validation, submit)
+
+const [name, setName] = useState("");
+
+2.Controlled Component	             Uncontrolled Component
+   Form data handled by React state     Form data handled by DOM
+   Uses value and onChange	        Uses ref
+   Easy validation & control	        Less control
+   Recommended in React	                Not recommended
+
+3. localStorage is a browser storage API used to store data permanently in key–value pairs.
+
+Data stays even after page refresh
+
+Stores only string values
+
+localStorage.setItem("user", "John");
+const user = localStorage.getItem("user")
+
+
+
+4.Because localStorage only stores strings.
+
+Solution:
+
+Convert object → JSON string before storing
+
+Convert JSON → object while reading
+
+localStorage.setItem("user", JSON.stringify(user));
+const data = JSON.parse(localStorage.getItem("user"));
+
+
+5.A Higher Order Component is a function that takes a component and returns a new component with extra functionality.
+
+Used for:
+
+Code reusability
+
+Authentication
+
+Logging
+
+Permission checks
+
+const withAuth = (Component) => {
+  return () => <Component />;
+};
+
+
+6.react-router-dom is used for navigation and routing in React applications.
+
+It helps to:
+
+Create multiple pages
+
+Navigate without page reload
+
+Handle dynamic routes
+
+
+7.<Link>	    <a>
+No page reload	    Page reloads
+Faster navigation   Slower
+SPA behavior	    Normal HTML
+<Link to="/home">Home</Link>
+
+8.map() – Render list of components
+
+filter() – Remove unwanted items
+
+find() – Find a specific item
+
+users.map(user => <p>{user.name}</p>)
+
+
+9.Conditional rendering means showing UI based on a condition.
+
+Common ways:
+
+if statement
+
+Ternary operator
+
+&& operator
+
+{isLoggedIn && <Dashboard />}
+
+
+10.useParams is a hook used to read URL parameters.
+
+Example:
+// URL: /user/10
+const { id } = useParams();
+
+
+ Used in dynamic routing.
+
+11.
+  import { useState } from "react";
+
+const Register = () => {
+  const [user, setUser] = useState({
+    username: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("User Registered");
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="username" onChange={handleChange} placeholder="Username" />
+      <input name="password" type="password" onChange={handleChange} placeholder="Password" />
+      <button type="submit">Register</button>
+    </form>
+  );
+};
+
+export default Register;
+
+12.
+  import { useState } from "react";
+
+const Login = () => {
+  const [login, setLogin] = useState({ username: "", password: "" });
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (
+      storedUser &&
+      login.username === storedUser.username &&
+      login.password === storedUser.password
+    ) {
+      setMessage("Login Successful");
+      localStorage.setItem("isLoggedIn", "true");
+    } else {
+      setMessage("Invalid Credentials");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input onChange={(e) => setLogin({ ...login, username: e.target.value })} placeholder="Username" />
+      <input type="password" onChange={(e) => setLogin({ ...login, password: e.target.value })} placeholder="Password" />
+      <button>Login</button>
+      <p>{message}</p>
+    </form>
+  );
+};
+
+export default Login;
+
+13.
+  import { useState, useEffect } from "react";
+
+const Users = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("users")) || [];
+    setUsers(data);
+  }, []);
+
+  return (
+    <div>
+      {users.map((user, index) => (
+        <p key={index}>{user.username}</p>
+      ))}
+    </div>
+  );
+};
+
+export default Users;
+
+14.
+  import { useState, useEffect } from "react";
+
+const EditDeleteUsers = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    setUsers(JSON.parse(localStorage.getItem("users")) || []);
+  }, []);
+
+  const deleteUser = (index) => {
+    const updated = users.filter((_, i) => i !== index);
+    setUsers(updated);
+    localStorage.setItem("users", JSON.stringify(updated));
+  };
+
+  const editUser = (index) => {
+    const updatedName = prompt("Enter new username");
+    const updated = users.map((u, i) =>
+      i === index ? { ...u, username: updatedName } : u
+    );
+    setUsers(updated);
+    localStorage.setItem("users", JSON.stringify(updated));
+  };
+
+  return (
+    <div>
+      {users.map((user, index) => (
+        <div key={index}>
+          {user.username}
+          <button onClick={() => editUser(index)}>Edit</button>
+          <button onClick={() => deleteUser(index)}>Delete</button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default EditDeleteUsers;
+
+15.
+  import { Navigate } from "react-router-dom";
+
+const withAuth = (Component) => {
+  return () => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    return isLoggedIn ? <Component /> : <Navigate to="/login" />;
+  };
+};
+
+export default withAuth;
+
+const Dashboard = () => {
+  return <h1>Dashboard</h1>;
+};
+
+export default Dashboard;
+
+import withAuth from "./withAuth";
+import Dashboard from "./Dashboard";
+
+const ProtectedDashboard = withAuth(Dashboard);
+
+<Route path="/dashboard" element={<ProtectedDashboard />} />
