@@ -19,8 +19,8 @@ const RoutePath = () => {
              <Route path="/Assignment2" element={<LoginValidationForm/>}/>
               <Route path="/Assignment3" element={<RegisterForm />}/>
                <Route path="/Assignment4" element={<AdminLogin />}/>
-                <Route path="/Assignment5" element={<MultiStepForm/>}/>
-                 <Route path="/Assignment6" element={<SignupForm />}/>
+            <Route path="/Assignment5" element={<MultiStepForm/>}/>
+              <Route path="/Assignment6" element={<SignupForm />}/>
         </Routes>
      </div>
     </>

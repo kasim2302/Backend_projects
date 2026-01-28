@@ -1,0 +1,42 @@
+DAY-12-01-2026
+
+
+ Container component , presentation component , Routing used in MNC companies structure
+-------------------------------------------------------------------------------------------  
+
+props revise from last class.
+this is core for this process.
+parent - data - mutable
+child - refelct - immutable
+child - data - it doesn't affect the parent component.
+
+
+single component adding:
+
+     --in same file adding more components in single page like named  export .
+
+Multi component:
+     -- add multi component in different folder like pages , app.jsx.
+
+Routing :
+make separate folder for routing like pages , and components.
+ npm i react-router-dom 
+
+
+conatiner component:
+make separate folder for making container logic files in src.
+  handles the logic we can use for api calls state management effect management  and function management.
+  there is no realated things about UI. 
+  we can passed the data as props between the component.
+
+Presentation components:
+  handles the UI only ,receives the props , there is no business logic , and there is no api calls,
+  it just for showing UI only.
+    
+
+
+  
+
+
+
+

@@ -1,0 +1,21 @@
+React Hooks:
+
+  Hooks in react router dom:
+   useNavigate()
+   useParams()
+   useLocation()
+   queryString()
+
+   useParams():
+      is a react router dom hooks to get the dynamic value from url to take values from the url parameter and used in component ut mostly used in product details ,
+ oreder details etc. 
+
+    find will return object and filter will return arrays.
+
+   Higher order components :
+    is a function it take the another component  returns the new enhanced component.
+    probably its always using the props.
+    hoc always starts with 'with' it will compatable for developers.
+
+    
+

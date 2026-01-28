@@ -6,9 +6,10 @@ import DashboardHome from "./dashboard/DashboardHome";
 import Profile from "./dashboard/Profile";
 import Settings from "./dashboard/Settings";
 
+
 const App = () => {
   return (
-   
+      
       <Routes>
         {/* Auth */}
         <Route path="/" element={<Login />} />
@@ -21,7 +22,7 @@ const App = () => {
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
-   
+     
   );
 };
 

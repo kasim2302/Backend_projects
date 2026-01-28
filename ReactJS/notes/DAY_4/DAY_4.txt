@@ -1,0 +1,38 @@
+Props:
+
+why we used props ,what is the uage of props, what are the methods in props?
+
+
+when you have the data on the single component i want to pass another components with the same data of your parent component.
+cannot change value in child component you can change it only in parent componrent bcz its immutable.
+
+object method,destructuring method
+
+what is fallback in react?
+default value ,default props they using in props if suppose some value wont coming to the components,it leads crash in your app.
+
+syntax:
+ componentName.defaultProps = {
+  
+   properties: values,
+   properties: values
+
+ }
+props library:
+cmd:
+  props-types
+
+ drawback:
+   props drilling - 
+
+task:
+  in app file register  and login
+
+
+
+
+
+
+
+
+	

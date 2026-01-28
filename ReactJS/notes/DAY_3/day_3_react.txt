@@ -1,0 +1,73 @@
+
+.env file explanation - all the sensitive datas are present in .env file.
+  if we use cra the variable must start with -: REACT_APP_API_URL=http://localhost:3000
+  if we use vite the varaible must start with -: VITE_API = http://localhost:3000
+
+  reapeated links must save in .env and we can use in our project wherever we want.
+
+   port number: 5000,3000 for backend
+   syntax:
+   const apiurl = import.meta.env.VITE_API;
+     
+
+   class components:
+   class introduced in 2015 in es6'import export introduced in 2015,
+    syntax:
+   create phase:
+    import {component} from 'react'
+   class App extends Component {
+   
+    render(
+       return(
+       <>
+         <div>class components</div>
+       </>
+       )
+    )
+   }
+
+   
+   updatephase:
+   class App extends Component {
+      constructor(props){
+        super(props)
+
+       this.state = {
+          count: 0
+       }
+      }
+      function changecount(){
+            
+      }
+    render(
+       return(
+       <>
+         <div>class components {this.state.count}</div>
+         <button onclick={changecount}>click count</button>
+       </>
+       )
+    )
+   }
+  constructor
+  super
+  state
+
+ class Life Cycle method:
+
+  Mount - 
+ componentDidMount(){
+
+ }
+  update - 
+  componentDidUpdate(){
+
+ }
+
+ unmount - 
+  componentWillMount(){
+
+ }
+   
+
+  
+   
