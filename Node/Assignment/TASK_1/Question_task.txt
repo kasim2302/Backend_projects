@@ -1,0 +1,51 @@
+What is HTTP module? Why we use it?
+📌 http module
+
+It is a built-in Node.js module used to:
+
+Create web servers
+
+Handle requests
+
+Send responses
+
+Why we use it?
+
+Because Node itself doesn’t automatically create a server.
+The http module gives us:
+
+createServer()
+
+Request object (req)
+
+Response object (res)
+
+It’s the foundation.
+
+Frameworks like Express are built on top of it.
+
+These are ES Module system features.
+
+They allow:
+
+Sharing code between files
+
+Splitting large apps into smaller modules
+
+Instead of writing everything in one file,
+we organize code cleanly.
+
+Runtime Environment
+
+A runtime environment is:
+
+Software layer that allows JavaScript to run outside the browser.
+
+Node.js is:
+
+A JavaScript runtime environment
+
+Built on Chrome’s V8 engine
+
+Browser runs JS inside browser.
+Node runs JS inside your system.
