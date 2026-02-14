@@ -1,0 +1,128 @@
+
+    What is API?
+
+API (Application Programming Interface) is:
+
+A bridge that allows two applications to communicate with each other.
+
+In web apps:
+
+Frontend → sends request
+
+Backend (API) → processes and responds
+
+Example:
+
+Frontend:
+
+GET /api/users
+
+
+Backend response:
+
+[
+  { "name": "Mohamed" }
+]
+
+
+So,
+
+API connects frontend, backend, and database.
+
+2️⃣ What is Route Handling?
+
+Route handling means:
+
+Defining what should happen when a specific URL and HTTP method is called.
+
+Example:
+
+app.get("/users", (req, res) => {
+  res.send("Users list");
+});
+
+
+Here:
+
+/users → route
+
+GET → method
+
+Function → handler
+
+So,
+
+Route handling = URL + method + logic
+
+3️⃣ What is Route Mounting?
+
+Route mounting means:
+
+Attaching route files to a base path in the main server.
+
+Example:
+
+app.use("/api/users", userRoutes);
+
+
+And inside userRoutes.js:
+
+router.get("/", getUsers);
+router.post("/", createUser);
+
+
+Final routes become:
+
+/api/users
+
+/api/users/:id
+
+This keeps code clean and modular.
+
+4️⃣ What is CORS?
+
+CORS (Cross-Origin Resource Sharing) is a security mechanism.
+
+It controls:
+
+Which frontend is allowed to access your backend.
+
+Problem example:
+
+Frontend → http://localhost:3000
+Backend → http://localhost:5000
+
+Browser blocks request ❌
+
+Solution:
+import cors from "cors";
+app.use(cors());
+
+
+Now frontend can talk to backend ✅
+
+Used when:
+
+React + Express
+
+Angular + Node
+
+Any different domain/port
+
+5️⃣ What is JSON Parse?
+JSON Parse means:
+
+Converting JSON string into JavaScript object.
+
+Example:
+
+const jsonData = '{"name":"Mohamed"}';
+const parsedData = JSON.parse(jsonData);
+
+console.log(parsedData.name); // Mohamed
+
+Opposite:
+JSON.stringify()
+
+
+Converts JS object → JSON string.
