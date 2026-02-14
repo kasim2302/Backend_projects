@@ -1,0 +1,218 @@
+Difference Between Node and Express
+🟢 Node.js
+
+Runtime environment
+
+Runs JavaScript outside browser
+
+Has built-in modules (http, fs, path…)
+
+Think:
+
+Node = Engine
+
+🔵 Express
+
+Web framework built on top of Node
+
+Helps create APIs easily
+
+Handles routing & middleware
+
+Think:
+
+Express = Tool built using Node
+
+Without Node → Express cannot run
+Without Express → Node can still run (but more coding needed)
+
+2️⃣ What is .env?
+
+.env is a file used to store:
+
+Secret keys
+
+Database URLs
+
+API keys
+
+Port numbers
+
+Example:
+
+PORT=5000
+DB_URL=mongodb://localhost:27017
+SECRET_KEY=mysupersecret
+
+
+We use dotenv package to read it.
+
+Why?
+
+👉 Security
+👉 Keep sensitive data out of code
+
+3️⃣ What is listen()?
+app.listen(5000)
+
+
+It:
+
+Starts the server
+
+Makes it wait for incoming requests
+
+Without listen() → server will not run.
+
+4️⃣ What is Express?
+
+Express is:
+
+A minimal and flexible Node.js web framework used to build web servers and APIs.
+
+It simplifies:
+
+Routing
+
+Middleware
+
+Request handling
+
+5️⃣ Why We Use Express?
+
+Because using pure Node HTTP module is hard.
+
+Example in Node:
+
+http.createServer((req, res) => {})
+
+
+Express makes it easy:
+
+app.get("/", (req, res) => {})
+
+
+Less code
+Cleaner structure
+Professional API building
+
+6️⃣ What is Nodemon?
+
+Nodemon is a development tool.
+
+It:
+
+Watches file changes
+
+Automatically restarts server
+
+Without nodemon:
+You must stop & start manually.
+
+Run using:
+
+npm run dev
+
+7️⃣ What is Port Number and Localhost?
+🔹 Port Number
+
+Communication door of your system.
+
+Example:
+
+http://localhost:5000
+
+
+5000 = port
+
+Many apps use different ports:
+
+3000
+
+5000
+
+8000
+
+🔹 Localhost
+
+Means:
+
+Your own computer
+
+localhost = 127.0.0.1
+
+It refers to your machine.
+
+8️⃣ What is API?
+
+API = Application Programming Interface
+
+In simple words:
+
+A bridge between frontend and backend.
+
+Example:
+
+Frontend asks:
+
+GET /users
+
+
+Backend responds:
+
+[ { name: "Mohamed" } ]
+
+9️⃣ Flow of Express + Frontend Process
+
+Let’s imagine React + Express:
+
+1️⃣ User clicks button
+2️⃣ React sends request using fetch/axios
+3️⃣ Express receives request
+4️⃣ Express processes logic
+5️⃣ Database interaction
+6️⃣ Express sends response
+7️⃣ React receives data
+8️⃣ UI updates
+
+Flow:
+
+Frontend → API → Backend → Database → Backend → Frontend
+
+🔟 What is package.json?
+
+package.json is:
+
+The heart of a Node project.
+
+It contains:
+
+Project name
+
+Version
+
+Dependencies
+
+Scripts
+
+Module type
+
+Example:
+
+{
+  "name": "myapp",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+
+
+It tells Node:
+
+What to install
+
+How to run the project
