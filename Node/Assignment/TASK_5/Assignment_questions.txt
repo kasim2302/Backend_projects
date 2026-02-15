@@ -1,0 +1,200 @@
+What is a Request Object?
+
+In Express:
+
+app.get("/", (req, res) => {
+   console.log(req);
+});
+
+
+👉 req = request object
+
+It represents everything the client (browser/Postman/frontend) sends to the server.
+
+That includes:
+
+URL
+
+Method (GET, POST…)
+
+Headers
+
+Body
+
+Params
+
+Query
+
+Cookies
+
+IP address
+
+Think of it like:
+
+📦 A package sent from frontend to backend.
+
+3️⃣ What is the use of req.body?
+🔥 Used when client sends data inside request body.
+
+Mostly used in:
+
+POST
+
+PUT
+
+PATCH
+
+Example:
+POST /register
+
+
+Body:
+
+{
+  "name": "Mohamed",
+  "email": "mohamed@gmail.com"
+}
+
+
+Backend:
+
+app.post("/register", (req, res) => {
+   console.log(req.body);
+});
+
+🧠 When do we use it?
+
+Creating user
+
+Login form
+
+Updating data
+
+Submitting forms
+
+⚠️ Needs middleware:
+
+app.use(express.json());
+
+4️⃣ What is the use of req.headers?
+
+Headers contain extra information about the request.
+
+Example headers:
+
+Content-Type
+
+Authorization
+
+User-Agent
+
+Token
+
+Example:
+
+app.get("/", (req, res) => {
+   console.log(req.headers);
+});
+
+🧠 When do we use headers?
+
+Sending authentication token
+
+API keys
+
+Checking content type
+
+Security checks
+
+Example:
+
+Authorization: Bearer asdf1234token
+
+
+Very important in JWT authentication.
+
+5️⃣ What is the use of req.params?
+
+Used for dynamic route values.
+
+Example route:
+
+app.get("/users/:id", (req, res) => {
+   console.log(req.params.id);
+});
+
+
+If user visits:
+
+/users/101
+
+
+Then:
+
+req.params.id = "101"
+
+🧠 When do we use it?
+
+Get user by ID
+
+Get product by ID
+
+Delete by ID
+
+Update by ID
+
+It’s used for identifying a specific resource.
+
+6️⃣ What is the use of req.query?
+
+Used for filtering or searching data.
+
+Example:
+
+/users?name=Ali&age=22
+
+
+Backend:
+
+app.get("/users", (req, res) => {
+   console.log(req.query);
+});
+
+
+Output:
+
+{ name: "Ali", age: "22" }
+
+🧠 When do we use it?
+
+Searching
+
+Filtering
+
+Pagination
+
+Sorting
+
+Example:
+
+/products?page=2&limit=10
+
+7️⃣ What is Request Object & When Do We Use It?
+
+Simple answer:
+
+The request object (req) is used whenever we need to read data sent by the client.
+
+We use it:
+
+When client sends form data → req.body
+
+When URL has ID → req.params
+
+When filtering → req.query
+
+When sending token → req.headers
+
+Basically:
+
+If frontend sends something → backend reads it using req.
