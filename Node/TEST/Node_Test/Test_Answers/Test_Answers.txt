@@ -1,0 +1,311 @@
+1.Difference Between Node.js and Express
+
+Node.js
+
+Runtime environment
+
+Runs JavaScript outside browser
+
+Provides built-in modules (http, fs, path)
+
+Express
+
+Web framework built on top of Node
+
+Makes building APIs easier
+
+Handles routing, middleware, JSON parsing etc.
+
+👉 Node = engine
+👉 Express = toolkit built on that engine
+
+
+2.How Routing Works Internally in Express
+
+Internally Express:
+
+Stores routes in a stack
+
+When request comes:
+
+It checks method (GET, POST, etc.)
+
+Matches URL path
+
+Executes matching route handler
+
+If no match → next middleware
+
+Basically it loops through registered routes in order.
+
+Order matters. Always.
+
+3.Purpose of express.json()
+app.use(express.json());
+
+
+It:
+
+Parses incoming JSON request bod
+
+Converts it into JavaScript object
+
+Makes it available in req.body
+
+Without this:
+
+req.body === undefined
+
+4.HTTP Methods in REST
+Method	Use Case
+GET	Fetch data
+POST	Create new data
+PUT	Replace entire resource
+PATCH	Update partial data
+DELETE	Remove data
+
+Example:
+
+GET /users
+
+POST /users
+
+PATCH /users/1
+
+5. Difference: req.params vs req.query vs req.body
+🔹 req.params
+
+From URL path
+
+/users/10
+
+req.params.id
+
+🔹 req.query
+
+From query string
+
+/users?age=20
+
+req.query.age
+
+🔹 req.body
+
+From request body (POST/PUT)
+
+{
+  "name": "Mohamed"
+}
+
+req.body.name
+
+6️⃣ Dynamic Route in Express
+app.get("/users/:id", (req, res) => {
+  res.send(`User ID is ${req.params.id}`);
+});
+
+
+Example scenario:
+
+Get specific user by ID
+
+/users/45
+
+Two Routes With Same Path + Method?
+
+Example:
+
+app.get("/home", handler1);
+app.get("/home", handler2);
+
+
+👉 Only first matching route runs
+👉 Unless next() is used
+
+Order = important.
+
+8️⃣ Route Mounting
+
+Used with express.Router()
+
+users.js
+import express from "express";
+const router = express.Router();
+
+router.get("/", getUsers);
+
+export default router;
+
+server.js
+app.use("/users", usersRouter);
+
+
+Now:
+
+/users
+
+
+This is route mounting.
+
+9️⃣ What is Middleware?
+
+Middleware = function that runs before response is sent
+
+(req, res, next)
+
+
+It can:
+
+Modify request
+
+Modify response
+
+Stop request
+
+Call next()
+
+Example:
+
+app.use((req, res, next) => {
+  console.log("Request received");
+  next();
+});
+
+
+It affects the request-response cycle by controlling flow.
+
+🔟 Properties Inside req Object
+
+Common ones:
+
+req.params
+
+req.query
+
+req.body
+
+req.method
+
+req.url
+
+req.headers
+
+req.path
+
+req.ip
+
+11️⃣ Handling 404 in Express
+
+Add at the bottom:
+
+app.use((req, res) => {
+  res.status(404).send("Page Not Found");
+});
+
+
+It runs if no route matched.
+
+12️⃣ res.send() vs res.json()
+res.send()
+
+Sends string, object, buffer
+
+Automatically sets content type
+
+res.json()
+
+Sends JSON only
+
+Converts object → JSON
+
+Example:
+
+res.json({ name: "Mohamed" });
+
+
+In APIs, we mostly use res.json().
+
+13️⃣ MVC Structure in Express
+
+Folder structure:
+
+controllers/
+routes/
+models/
+server.js
+
+Flow:
+
+Route → Controller → Model → Response
+
+Example:
+
+routes/userRoutes.js
+
+router.get("/", getUsers);
+
+
+controllers/userController.js
+
+export const getUsers = (req, res) => {
+  res.json({ message: "Users list" });
+};
+
+
+Clean separation of logic.
+
+14️⃣ PUT vs PATCH
+
+PUT:
+
+Replaces entire resource
+
+PATCH:
+
+Updates only specific fields
+
+Example:
+
+PUT:
+
+{
+  "name": "New",
+  "age": 25
+}
+
+
+PATCH:
+
+{
+  "age": 26
+}
+
+15️⃣ Full Request-Response Lifecycle in Express
+
+Let’s say client sends:
+
+GET /users/10
+
+
+Flow:
+
+Client sends request
+
+Node receives it
+
+Express checks middleware stack
+
+Body parser runs (if needed)
+
+Route matching happens
+
+Controller executes
+
+Response is prepared
+
+Express sends response
+
+Connection closes
+
+If error:
+→ Error middleware runs
