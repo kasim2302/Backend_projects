@@ -1,0 +1,169 @@
+1️⃣ What is Response Object in Express?
+
+The response object (res) represents the HTTP response that your server sends back to the client.
+
+It is used to:
+
+Send data
+
+Set status codes
+
+Send JSON
+
+Send files
+
+Set headers
+
+Redirect users
+
+In simple words:
+
+res is how the server talks back to the client.
+
+Example:
+
+app.get("/", (req, res) => {
+    res.send("Hello World")
+})
+
+
+Here res sends the response.
+
+2️⃣ Common Methods Available in Response Object
+
+Here are the most important ones you should know:
+
+✅ res.send()
+
+Sends response (string, object, HTML, etc.)
+
+res.send("Hello")
+
+✅ res.json()
+
+Sends JSON response.
+
+res.json({ name: "Mohamed" })
+
+✅ res.status()
+
+Sets HTTP status code.
+
+res.status(200)
+
+
+Usually chained:
+
+res.status(200).json({ message: "Success" })
+
+✅ res.redirect()
+
+Redirects to another route.
+
+res.redirect("/login")
+
+✅ res.sendFile()
+
+Sends a file.
+
+res.sendFile("index.html")
+
+✅ res.set()
+
+Sets response headers.
+
+res.set("X-App-Version", "1.0")
+
+
+These are enough for most interviews.
+
+3️⃣ How is res Made Available? Do We Import It?
+
+Very important concept 👇
+
+You do NOT import res manually.
+
+Express automatically provides req and res objects inside every route handler.
+
+When you write:
+
+app.get("/", (req, res) => {
+
+
+Express internally creates:
+
+req (request object)
+
+res (response object)
+
+And passes them into your function.
+
+So no import needed.
+
+4️⃣ What Kind of Data Can Be Sent Using Response Object?
+
+You can send:
+
+✅ String
+
+✅ JSON Object
+
+✅ Array
+
+✅ HTML
+
+✅ File
+
+✅ Buffer
+
+Examples:
+
+res.send("Hello")              // String
+res.json({ id: 1 })            // JSON
+res.send([1,2,3])              // Array
+res.send("<h1>Hello</h1>")     // HTML
+
+
+Express is flexible.
+
+5️⃣ What is the Use of Status Codes?
+
+Status codes tell the client what happened to their request.
+
+They help the client understand:
+
+Was request successful?
+
+Did user make mistake?
+
+Did server crash?
+
+Example:
+
+200 → Success
+
+400 → Client error
+
+404 → Not found
+
+500 → Server error
+
+Without status codes, frontend wouldn’t know what happened.
+
+6️⃣ What is a Status Code? Explain With Example
+
+A status code is a 3-digit number sent in the HTTP response that indicates the result of the request.
+
+Example:
+
+res.status(200).json({ message: "Data fetched" })
+
+
+200 means → request successful.
+
+Another example:
+
+res.status(404).json({ message: "User not found" })
+
+
+404 means → requested resource does not exist.
