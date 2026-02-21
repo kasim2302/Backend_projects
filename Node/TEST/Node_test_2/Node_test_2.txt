@@ -1,0 +1,326 @@
+1. What is Node.js and why is it used in backend development?
+   Nodejs is a javascript runtime environment  that allows us to run js outside the browser.
+   Normally js runs in browser in v8 engine then Nodejs let us to run js outside the browser.
+
+   why we use it in backend:
+   - Fast (uses V8 engine)
+   - Non blocking asynchronus
+   - Good for API and real time apps
+   - uses same language for frontend & backend.
+    
+  Example use:
+   - To create REST APIs
+   - Connecting to database
+   - Handling authentication
+
+2. Difference between synchronous and asynchronous functions?
+  Synchronus(blocking):
+   - code runs line by line.
+   - Next line waits until previous line finishes.
+
+   const data = fs.readFileSync("file.txt)
+   console.log(data)
+
+   Asynchronus(Non-blocking):
+   - Does not wait for the previous process
+   - Other code can run while task is processing.
+
+    fs.readFile("file.txt",(err,data)=>{
+    console.log(data)
+    console.log("Error",err)
+   })
+
+   Nodejs is famous because of Asynchronus behavior.
+
+3.What is the purpose of the fs module?
+
+   fs - file system module
+
+   It's used to 
+   - Create files
+   - Read files
+   - Update files
+   - Delete files
+
+   Two commonly used two methods
+   - fs.readFile()
+   - fs.writeFile()
+   
+   - fs.unlink()
+   - fs.appendFile()
+
+4.Relative path vs Absolute path
+
+ Absolute path:
+
+ full path from root folder
+
+ C:users/M/Documents/file.txt
+
+ Relative path:
+
+ path based on current file location.
+ ./data/file.txt
+
+ Relative is commonly used in projects.
+
+ 5.Express.js is a web framework for Nodejs.
+
+ it helps us
+ - Create API easily
+ - Handle Routes
+ - Mangae middleware
+ - Handle http requests
+
+ Difference from Node HTTP module:
+HTTP Module	Express
+Manual routing	Easy routing
+More code	Less code
+Basic features	Advanced features
+
+Example:
+
+Without Express:
+
+http.createServer(...)
+
+With Express:
+
+app.get("/users", ...)
+
+Express makes backend development easier.
+
+6.What is routing in Express?
+
+Defining how the server responds to client requests.
+
+
+Example:
+
+app.get("/users", (req, res) => {
+   res.send("User list");
+});
+
+Here:
+
+/users = route
+
+app.get() = method
+
+Callback handles request
+
+7. What is the difference between req.params, req.query, and req.body?
+req.params
+
+Used to get URL parameters.
+
+/users/:id
+req.params.id
+
+Example:
+
+/users/10
+🔹 req.query
+
+Used for query strings.
+
+/users?name=mohamed
+req.query.name
+🔹 req.body
+
+Used to get data from POST/PUT request body.
+
+req.body.username
+
+Needs middleware:
+
+app.use(express.json())
+
+8. What is the response object (res)?
+
+res is the response object.
+
+It sends data back to client.
+
+Common methods:
+
+res.send()
+
+res.json()
+
+res.status()
+
+Example:
+
+res.status(200).json({ message: "Success" });
+
+Without res, client will never get response.
+
+9. What is the use of HTTP status codes?
+
+Status codes tell the client:
+👉 Whether request was successful or not.
+
+Common codes:
+
+200 → Success
+
+404 → Not Found
+
+500 → Server Error
+
+201 → Created
+
+400 → Bad Request
+
+Example:
+
+res.status(404).send("User not found")
+
+10. What is MVC architecture?
+
+MVC = Model View Controller
+
+Structure:
+
+Model → Database logic
+
+View → UI (Frontend)
+
+Controller → Business logic
+
+Why use MVC?
+
+Clean code structure
+
+Easy maintenance
+
+Better scalability
+
+Separation of concerns
+
+Example in your Django/Node project:
+
+Model → Mongoose schema
+
+Controller → API logic
+
+View → React frontend
+
+11. What is MongoDB?
+
+MongoDB is a NoSQL database.
+
+It stores data in:
+ JSON-like format (BSON documents)
+
+Example:
+
+{
+  "name": "halil",
+  "age": 25
+}
+Difference: MongoDB vs SQL
+SQL	MongoDB
+Tables	Collections
+Rows	Documents
+Columns	Fields
+Fixed schema	Flexible schema
+MySQL, PostgreSQL	MongoDB
+
+12. What is Mongoose?
+
+Mongoose is an ODM (Object Data Modeling) library for MongoDB in Node.js.
+
+It helps:
+
+Create schemas
+
+Validate data
+
+Interact with MongoDB easily
+
+Without Mongoose → Raw MongoDB commands
+With Mongoose → Clean structured code
+
+13. What is a Schema in Mongoose?
+
+Schema defines:
+👉 Structure of a document
+
+Example:
+
+const userSchema = new mongoose.Schema({
+   name: String,
+   age: Number
+});
+
+It defines:
+
+Field names
+
+Data types
+
+Validation rules
+
+14. What is a Model in Mongoose?
+
+Model is created using schema.
+
+const User = mongoose.model("User", userSchema);
+
+Model is used to:
+
+Create
+
+Read
+
+Update
+
+Delete documents
+
+Think:
+Schema = Structure
+Model = Tool to interact with DB
+
+15. Mongoose CRUD Methods
+🔹 Create
+
+Model.create()
+
+new Model().save()
+
+🔹 Read
+
+Model.find()
+
+Model.findById()
+
+Model.findOne()
+
+🔹 Update
+
+Model.findByIdAndUpdate()
+
+Model.updateOne()
+
+🔹 Delete
+
+Model.findByIdAndDelete()
+
+Model.deleteOne()
+
+
+ 
+
+
+
+
+
+
+   
+
+
+
+
+
